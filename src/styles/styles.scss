@@ -1,0 +1,10 @@
+@import "tailwind.scss";
+@import "fonts";
+@import "antd.scss";
+
+
+body {
+    scroll-behavior: smooth;
+    @apply scrollbar scrollbar-w-3 max-sm:scrollbar-w-2 scrollbar-track-gray-300 scrollbar-thumb-gray-600 scrollbar-thumb-rounded scroll-smooth;
+}
+  

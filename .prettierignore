@@ -1,0 +1,8 @@
+node_modules
+.next
+.swc
+out
+yarn.lock
+package-lock.json
+public
+html

@@ -1,0 +1,25 @@
+.ant-modal {
+  width: fit-content !important;
+  .ant-modal-content {
+    padding: 0 !important;
+    background-color: transparent;
+    .ant-modal-body {
+      .ant-modal-confirm-body-wrapper {
+        .ant-modal-confirm-btns {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.ant-drawer-content {
+  .ant-drawer-wrapper-body {
+    .ant-drawer-header {
+      @apply hidden;
+    }
+    .ant-drawer-body {
+      @apply p-0;
+    }
+  }
+}
