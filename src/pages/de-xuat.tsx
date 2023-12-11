@@ -6,8 +6,28 @@ const KetQuaPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { listTrending,offset,setOffset } = useTrending();
 
+  const [trending, setTrending] = useState(0)
+  // let trending = 0;
+
+
   console.log(listTrending);
   
+  const handlePaginationTrending = (type: number) => {
+    console.log("trending ban dau", trending);
+    
+      if(type === 1 && trending > 1){
+        setTrending(trending - 1)
+        // trending -= 1
+      }
+      if(type === 2  && trending < listTrending.data.length - 1){
+        setTrending(trending + 1)
+          // trending += 1
+      }
+
+      console.log("trending sau ", trending);
+      
+  }
+
   const handlePagination = (type:any) => {
     if(type == 1){
         setCurrentPage(1);
@@ -42,7 +62,7 @@ const KetQuaPage = () => {
 
   useEffect(() => {
 
-  }, [offset])
+  }, [offset, trending])
 
 
   return (
@@ -52,7 +72,7 @@ const KetQuaPage = () => {
       </div>
       <div className="p-6">
         <div className="flex justify-between items-center max-w-[100rem] mx-auto my-10">
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-20" viewBox="0 0 12 12" fill="none">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-20" viewBox="0 0 12 12" fill="none" onClick={() => handlePaginationTrending(1)} style={{cursor:"pointer"}}>
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -68,14 +88,14 @@ const KetQuaPage = () => {
             />
           </svg>
           <div className="flex items-center gap-10">
-            <img src="/images/girl.png" className="h-80 w-56 object-fill" alt="" />
+            <img src={listTrending?.data[trending].avatar} className="h-80 w-56 object-fill" alt="" />
             <div className="p-2 flex flex-col gap-2">
               <div>
-                Trịnh Mai Anh <span className="h-3 w-3 rounded-full inline-block bg-green-500"></span>
+              {listTrending?.data[trending].fullname} <span className="h-3 w-3 rounded-full inline-block bg-green-500"></span>
               </div>
-              <div>25</div>
-              <div>Thanh Oai , Hà Nội </div>
-              <div>Tìm: Nam 23 - 35 </div>
+              <div>{listTrending?.data[trending].age}</div>
+              <div>{listTrending?.data[trending].city_name}</div>
+              <div>{listTrending?.data[trending].description}</div>
               <div className="flex items-center gap-6 w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path
@@ -96,7 +116,7 @@ const KetQuaPage = () => {
               </div>
             </div>
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-20" viewBox="0 0 12 12" fill="none">
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-20" viewBox="0 0 12 12" fill="none" style={{cursor:"pointer"}} onClick={() => handlePaginationTrending(2)}>
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -112,7 +132,7 @@ const KetQuaPage = () => {
             />
           </svg>
         </div>
-        <div className="grid grid-cols-6 gap-6 max-w-[100rem] mx-auto">
+        <div className="grid grid-cols-6 gap-6 max-w-[100rem] mx-auto"  >
           {listTrending?.data.map((value: any, index:any) => (
             <div key={index} className="border border-solid border-black">
               <img src={value.avatar} className="w-full aspect-square object-cover mb-2" alt="" />

@@ -88,6 +88,7 @@ const TimKiemPage = () => {
       <div className=" flex text-green-500 text-xl font-bold items-center px-6 h-11 bg-[linear-gradient(90deg,_#353434_16.7%,_rgba(255,_66,_66,_0.74)_54.6%,_rgba(255,_105,_108,_0.00)_99.88%);]">
         Tìm kiếm nâng cao
       </div>
+      
       <div className="p-6">
         <div className="flex items-center justify-end">
           <img src="/images/reload.png" alt="" />
@@ -114,6 +115,7 @@ const TimKiemPage = () => {
                 defaultValue="20"
                 style={{ width: 70 }}
                 options={[
+                  { value: "15", label: "15" },
                   { value: "20", label: "20" },
                   { value: "30", label: "30" },
                 ]}
@@ -126,6 +128,7 @@ const TimKiemPage = () => {
                 options={[
                   { value: "20", label: "20" },
                   { value: "30", label: "30" },
+                  { value: "40", label: "40" },
                 ]}
                 value={ageEnd.toString()}
                 onChange={handleChangeAgeEnd}
@@ -143,6 +146,10 @@ const TimKiemPage = () => {
               options={[
                 { value: "1", label: "Hà Nội " },
                 { value: "2", label: "TP HCM " },
+                { value: "3", label: "Đà Năng " },
+                { value: "4", label: " Hải Phòng" },
+                { value: "5", label: "Bình Dương " },
+                { value: "6", label: "Ninh Bình " },
               ]}
               value={city.toString()}
               onChange={handleChangeCity}
@@ -176,8 +183,15 @@ const TimKiemPage = () => {
         </div>
       </div>
 
+
+     
       {
-        listResult?.total > 0 && 
+        
+        listResult?.total > 0 ?
+        <>
+         <div style={{marginBottom:"20px"}} className=" flex text-green-500 text-xl font-bold items-center px-6 h-11 bg-[linear-gradient(90deg,_#353434_16.7%,_rgba(255,_66,_66,_0.74)_54.6%,_rgba(255,_105,_108,_0.00)_99.88%);]">
+        Kêt quả Tìm kiếm
+      </div>
         <div className="grid grid-cols-6 gap-6 max-w-[100rem] mx-auto">
         {listResult?.data.map((value: any, index:any) => (
           <div key={index} className="border border-solid border-black">
@@ -188,6 +202,7 @@ const TimKiemPage = () => {
               </div>
               <div>{value.age}</div>
               <div>{value.city_name || "Ha Noi"} </div>
+              {/* <div>{value.gender == 1 ? "Nam" : "Nu" } </div> */}
               <div>{value.description || "default"} </div>
               <div className="flex items-center gap-6 w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -211,6 +226,10 @@ const TimKiemPage = () => {
           </div>
         ))}
       </div>
+        </>
+      : <>
+        
+      </>
       }
     </div>
   )
